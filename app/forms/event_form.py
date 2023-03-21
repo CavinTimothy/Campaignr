@@ -3,7 +3,7 @@ from wtforms import StringField, TextAreaField, DateTimeField
 from wtforms.validators import Length, DataRequired
 
 
-class BreweryForm(FlaskForm):
+class EventForm(FlaskForm):
     name = StringField('Name', validators=[DataRequired(), Length(max=50)])
     address = StringField('Address', validators=[DataRequired(), Length(max=50)])
     city = StringField('City', validators=[DataRequired(), Length(max=20)])
