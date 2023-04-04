@@ -18,7 +18,7 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 # GET ALL EVENTS
-@event_routes.route('', methods=['GET'])
+@event_routes.route('/', methods=['GET'])
 def get_all_events():
     """
     Query for all events and returns them in a list of event dictionaries
@@ -69,10 +69,15 @@ def edit_event(id):
     """
     Update a event
     """
+    event = Event.query.get(id)
+    if not event:
+        return jsonify({'message': 'Couldn\'t find event', 'statusCode': 404}), 404
+    if event.user_id != current_user.id:
+        return jsonify({'message': 'Unauthorized', 'statusCode': 401}), 401
+
     form = EventForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        event = Event.query.get(id)
         form.populate_obj(event)
         db.session.commit()
         return jsonify(event.to_dict())

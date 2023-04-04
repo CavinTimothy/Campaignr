@@ -1,42 +1,40 @@
 from app.models import db, Event, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import datetime
 
 def seed_events():
     event1 = Event(
-        name = '',
-        address = '',
-        city = '',
-        state = '',
-        country = '',
-        description = '',
+        name = 'Grand Opening!',
+        address = '555 15th St.',
+        city = 'Portland',
+        state = 'OR',
+        description = 'Come celebrate our grand opening!',
         user_id = 1,
         event_image = '',
-        starts_at = '',
-        ends_at = ''
+        starts_at = datetime.strptime('2023-03-19 13:30', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-03-19 18:00', '%Y-%m-%d %H:%M')
     )
     event2 = Event(
-        name = '',
-        address = '',
-        city = '',
-        state = '',
-        country = '',
-        description = '',
+        name = 'Seattle Fundraiser',
+        address = '556 Commercial Rd.',
+        city = 'Seattle',
+        state = 'WA',
+        description = 'Come to Seattle for our first fundraiser!',
         user_id = 2,
         event_image = '',
-        starts_at = '',
-        ends_at = ''
+        starts_at = datetime.strptime('2023-04-03 09:00', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-04-03 20:00', '%Y-%m-%d %H:%M')
     )
     event3 = Event(
-        name = '',
-        address = '',
-        city = '',
-        state = '',
-        country = '',
-        description = '',
+        name = 'Spring 2023 Concert',
+        address = '223 Green Ave.',
+        city = 'Boise',
+        state = 'ID',
+        description = 'Show support to our local performers in Boise!',
         user_id = 3,
         event_image = '',
-        starts_at = '',
-        ends_at = ''
+        starts_at = datetime.strptime('2023-05-18 21:00', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-05-18 23:30', '%Y-%m-%d %H:%M')
     )
 
     db.session.add(event1)

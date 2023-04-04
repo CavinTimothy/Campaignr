@@ -12,16 +12,15 @@ class Event(db.Model):
     address = db.Column(db.String(50), nullable=False)
     city = db.Column(db.String(20), nullable=False)
     state = db.Column(db.String(20), nullable=False)
-    country = db.Column(db.String(20), nullable=False)
     description = db.Column(db.String(1000), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('users.id')), nullable=False)
+        add_prefix_for_prod('users.id')), nullable=True)
     event_image = db.Column(db.String(255), nullable=False)
     starts_at = db.Column(db.DateTime, nullable=False)
     ends_at = db.Column(db.DateTime, nullable=False)
 
     user = db.relationship('User', back_populates='events')
-    reviews = db.relationship('Review', back_populates='event')
+    reviews = db.relationship('Review', back_populates='event', cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
@@ -30,10 +29,9 @@ class Event(db.Model):
             'address': self.address,
             'city': self.city,
             'state': self.state,
-            'country': self.country,
             'description': self.description,
             'userId': self.user_id,
             'eventImage': self.event_image,
-            'startsAt': self.starts_at,
-            'endsAt': self.ends_at
+            'startsAt': self.starts_at.strftime('%Y-%m-%d %H:%M'),
+            'endsAt': self.ends_at.strftime('%Y-%m-%d %H:%M')
         }
