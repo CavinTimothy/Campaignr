@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime
 
 
 class Event(db.Model):
@@ -23,6 +24,14 @@ class Event(db.Model):
     reviews = db.relationship('Review', back_populates='event', cascade='all, delete-orphan')
 
     def to_dict(self):
+        now = datetime.now()
+        if now < self.starts_at:
+            status = 'Upcoming'
+        elif self.starts_at < now < self.ends_at:
+            status = 'Ongoing'
+        elif now > self.ends_at:
+            status = 'Ended'
+
         return {
             'id': self.id,
             'name': self.name,
@@ -32,6 +41,8 @@ class Event(db.Model):
             'description': self.description,
             'userId': self.user_id,
             'eventImage': self.event_image,
-            'startsAt': self.starts_at.strftime('%Y-%m-%d %H:%M'),
-            'endsAt': self.ends_at.strftime('%Y-%m-%d %H:%M')
+            'startTime': self.starts_at.strftime('%a, %b %d, %I:%M%p'),
+            'startsAt': self.starts_at.strftime('%Y-%m-%dT%H:%M'),
+            'endsAt': self.ends_at.strftime('%Y-%m-%dT%H:%M'),
+            'status': status
         }

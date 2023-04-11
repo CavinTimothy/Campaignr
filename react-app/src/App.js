@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom";
 import Home from './components/Home'
 import { EventList, EventPage, CreateEventPage, EditEventPage } from './components/Events'
 import { authenticate } from "./store/session";
+import { fetchEvents } from "./store/events";
 import Navigation from "./components/Navigation";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
     dispatch(authenticate()).then(() => setIsLoaded(true));
+    dispatch(fetchEvents());
   }, [dispatch]);
 
   return (
