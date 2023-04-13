@@ -27,6 +27,6 @@ class Review(db.Model):
             'body': self.body,
             'userId': self.user_id,
             'eventId': self.event_id,
-            'createdAt': self.created_at.strftime('%Y-%m-%d %H:%M'),
-            'updatedAt': self.updated_at.strftime('%Y-%m-%d %H:%M')
+            'createdAt': self.created_at.strftime('%B %d, %Y'),
+            'updatedAt': self.updated_at.strftime('%B %d, %Y')
         }

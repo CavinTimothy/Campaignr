@@ -10,5 +10,5 @@ class EventForm(FlaskForm):
     state = StringField('State', validators=[DataRequired(), Length(max=20)])
     description = TextAreaField('Description', validators=[DataRequired(), Length(max=255)])
     event_image = StringField('Image')
-    starts_at = DateTimeField('Starts At', validators=[DataRequired()], format='%Y-%m-%d %H:%M')
-    ends_at = DateTimeField('Ends At', validators=[DataRequired()], format='%Y-%m-%d %H:%M')
+    starts_at = DateTimeField('Starts At', validators=[DataRequired()], format='%Y-%m-%dT%H:%M')
+    ends_at = DateTimeField('Ends At', validators=[DataRequired()], format='%Y-%m-%dT%H:%M')

@@ -30,7 +30,10 @@ function EventPage() {
     setIsDeleted(true)
   }
 
-  const dateTimeFormat = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeStyle: 'short' });
+  const dateTimeFormat = new Intl.DateTimeFormat('en-US', {
+    month: 'long', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', hour12: true
+  }); // "April 3 at 7:23 AM"
   const starts = dateTimeFormat.format(new Date(event.startsAt));
   const ends = dateTimeFormat.format(new Date(event.endsAt));
 

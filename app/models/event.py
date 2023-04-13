@@ -41,7 +41,7 @@ class Event(db.Model):
             'description': self.description,
             'userId': self.user_id,
             'eventImage': self.event_image,
-            'startTime': self.starts_at.strftime('%a, %b %d, %I:%M%p'),
+            'startTime': self.starts_at.strftime('%a, %b %d, %I:%M %p'),
             'startsAt': self.starts_at.strftime('%Y-%m-%dT%H:%M'),
             'endsAt': self.ends_at.strftime('%Y-%m-%dT%H:%M'),
             'status': status

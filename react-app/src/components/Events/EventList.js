@@ -11,14 +11,19 @@ function EventList() {
     dispatch(fetchEvents());
   }, [dispatch]);
 
+  const dateTimeFormat = new Intl.DateTimeFormat('en-US', {
+    month: 'short', day: '2-digit', weekday: 'short',
+    hour: 'numeric', minute: 'numeric', hour12: true
+  }); // "Mon, Apr 03, 7:23 AM"
+
   return (
     <>
-      {events && events.map(({ name, city, state, description, eventImage, startTime, status }, idx) => (
+      {events && events.map(({ id, name, city, state, description, eventImage, startsAt, status }, idx) => (
         <li key={idx} className='homeLi'>
-          <Link className='homeSong' to={`/events/${events[idx].id}`}>
+          <Link className='homeSong' to={`/events/${id}`}>
             <div className='homeItem'>
               <h3 className='homeItem soti'>{name}</h3>
-              <h5>{`${startTime} - ${status}`}</h5>
+              <h5>{`${dateTimeFormat.format(new Date(startsAt))} - ${status}`}</h5>
               <p>{`${city}, ${state}`}</p>
               <img src={eventImage} alt='Event Image' className='homeItem img' style={{ width: '200px' }} />
               <p className='homeP'>{description}</p>
