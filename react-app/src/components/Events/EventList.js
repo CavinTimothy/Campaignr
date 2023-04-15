@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Link, useParams, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { fetchEvents } from '../../store/events';
 
 function EventList() {
@@ -25,7 +25,7 @@ function EventList() {
               <h3 className='homeItem soti'>{name}</h3>
               <h5>{`${dateTimeFormat.format(new Date(startsAt))} - ${status}`}</h5>
               <p>{`${city}, ${state}`}</p>
-              <img src={eventImage} alt='Event Image' className='homeItem img' style={{ width: '200px' }} />
+              <img src={eventImage} alt='Event thumbnail' className='homeItem img' style={{ width: '200px' }} />
               <p className='homeP'>{description}</p>
             </div>
           </Link>

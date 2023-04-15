@@ -1,44 +1,30 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, Link, useParams, useHistory } from 'react-router-dom';
-import { createEvent, updateEvent } from '../../store/events';
+import { useHistory } from 'react-router-dom';
+import { createEvent } from '../../store/events';
 
 function CreateEventPage() {
-
-  const history = useHistory();
   const dispatch = useDispatch();
+  const history = useHistory();
+  const user = useSelector(state => state.session.user);
 
-  const [name, setName] = useState('');
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [description, setDescription] = useState('');
-  const [eventImage, setEventImage] = useState('');
-  const [startsAt, setStartsAt] = useState(new Date().toJSON().slice(0, -8));
-  const [endsAt, setEndsAt] = useState(new Date().toJSON().slice(0, -8));
+  if (!user) history.push('/');
+
+  const demoUser = user.id === 1 ? true : false;
+  const [name, setName] = useState(demoUser ? 'High 5 day!' : '');
+  const [address, setAddress] = useState(demoUser ? '123 up-high St' : '');
+  const [city, setCity] = useState(demoUser ? 'San Diego' : '');
+  const [state, setState] = useState(demoUser ? 'CA' : '');
+  const [description, setDescription] = useState(demoUser ? 'Join us in San Diego to set the world record for the largest group high 5!' : '');
+  const [eventImage, setEventImage] = useState(demoUser ? 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-demo1.jpeg' : '');
+  const [startsAt, setStartsAt] = useState(demoUser ? '2023-05-22T13:00' : '');
+  const [endsAt, setEndsAt] = useState(demoUser ? '2023-05-22T18:00' : '');
   // date = new Date() -> Wed Apr 12 2023 21:39:08 GMT-0700 (Pacific Daylight Time)
   //  date = Date() -> "Wed Apr 12 2023 21:39:08 GMT-0700 (Pacific Daylight Time)"
   // date1 = date.toJSON() -> "2023-04-13T04:39:08.043Z"
   // date2 = date1.slice(0, -8) -> "2023-04-13T04:39"
 
   const [errors, setErrors] = useState([]);
-
-  const checkStartToEnd = () => {
-    if (new Date(startsAt) >= new Date(endsAt)) {
-      const offsetEnd = new Date(startsAt);
-      offsetEnd.setHours(offsetEnd.getHours + 1);
-      setEndsAt(offsetEnd.toJSON().slice(0, -8));
-    }
-    setErrors([...errors, 'Event must be longer than 1 hour'])
-  };
-  const checkStartTime = e => {
-    setStartsAt(e.target.value);
-    checkStartToEnd;
-  };
-  const checkEndTime = e => {
-    setEndsAt(e.target.value);
-    checkStartToEnd;
-  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -54,12 +40,11 @@ function CreateEventPage() {
       ends_at: endsAt
     };
 
-    const data = await dispatch(createEvent(payload));
-    if (data.errors) {
-      setErrors(data.errors);
-    } else {
-      history.push(`/events/${data.id}`);
-    }
+    const data = await dispatch(createEvent(payload)).catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
+    history.push(`/events/${data.id}`);
   };
 
   const states = [
@@ -100,21 +85,25 @@ function CreateEventPage() {
           value={name}
           onChange={e => setName(e.target.value)}
         />
-        <label for='start-time'>Start Date and Time</label>
+        <label>Start Date and Time</label>
         <input
           id='start-time'
           type='datetime-local'
           required
           value={startsAt}
-          onChange={checkStartTime}
+          onChange={e => setStartsAt(e.target.value)}
+          // onChange={checkStartTime}
+          min={new Date().toJSON().slice(0, -8)}
         />
-        <label for='end-time'>End Date and Time</label>
+        <label>End Date and Time</label>
         <input
           id='end-time'
           type='datetime-local'
           required
           value={endsAt}
-          onChange={checkEndTime}
+          onChange={e => setEndsAt(e.target.value)}
+          // onChange={checkEndTime}
+          min={startsAt}
         />
         <input
           type='text'
@@ -131,7 +120,7 @@ function CreateEventPage() {
           onChange={e => setCity(e.target.value)}
         />
         <select onChange={e => setState(e.target.value)} required>
-          <option value={''}>State</option>
+          <option value={''}>Select State</option>
           {states.map((state, idx) =>
             <option key={idx} value={state.slice(-2)}>
               {state.slice(0, -3)}
@@ -152,11 +141,10 @@ function CreateEventPage() {
           value={eventImage}
           onChange={e => setEventImage(e.target.value)}
         />
-        <button>Create</button>
+        <button type='submit'>Publish</button>
       </form>
     </div>
   );
 };
 
-
-export default CreateEventPage
+export default CreateEventPage;

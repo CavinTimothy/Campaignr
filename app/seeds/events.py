@@ -10,7 +10,7 @@ def seed_events():
         state = 'OR',
         description = 'Come celebrate our grand opening!',
         user_id = 1,
-        event_image = '',
+        event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-seed1.jpg',
         starts_at = datetime.strptime('2023-03-19 13:30', '%Y-%m-%d %H:%M'),
         ends_at = datetime.strptime('2023-03-19 18:00', '%Y-%m-%d %H:%M')
     )
@@ -21,7 +21,7 @@ def seed_events():
         state = 'WA',
         description = 'Come to Seattle for our first fundraiser!',
         user_id = 2,
-        event_image = '',
+        event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-seed2.jpg',
         starts_at = datetime.strptime('2023-04-03 09:00', '%Y-%m-%d %H:%M'),
         ends_at = datetime.strptime('2023-04-03 20:00', '%Y-%m-%d %H:%M')
     )
@@ -32,7 +32,7 @@ def seed_events():
         state = 'ID',
         description = 'Show support to our local performers in Boise!',
         user_id = 3,
-        event_image = '',
+        event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-seed3.jpg',
         starts_at = datetime.strptime('2023-05-18 21:00', '%Y-%m-%d %H:%M'),
         ends_at = datetime.strptime('2023-05-18 23:30', '%Y-%m-%d %H:%M')
     )

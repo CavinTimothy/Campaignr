@@ -2,7 +2,10 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import Home from './components/Home'
-import { EventList, EventPage, CreateEventPage, EditEventPage } from './components/Events'
+import EventList from './components/Events/EventList';
+import EventPage from "./components/Events/EventPage";
+import CreateEventPage from "./components/Events/CreateEventPage";
+import EditEventPage from "./components/Events/EditEventPage";
 import { authenticate } from "./store/session";
 import { fetchEvents } from "./store/events";
 import Navigation from "./components/Navigation";
@@ -20,16 +23,16 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/" >
+          <Route exact path="/" >
             <Home />
           </Route>
-          <Route path="/events">
+          <Route exact path="/events">
             <EventList />
           </Route>
           <Route path="/events/new">
             <CreateEventPage />
           </Route>
-          <Route path="/events/:eventId">
+          <Route exact path="/events/:eventId">
             <EventPage />
           </Route>
           <Route path="/events/:eventId/edit">

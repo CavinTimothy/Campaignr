@@ -26,7 +26,6 @@ export const fetchEvents = () => async dispatch => {
   if (res.ok) {
     dispatch(setEvents(data));
   }
-  return data;
 };
 
 // *(GET) Read an event by id
@@ -37,7 +36,6 @@ export const fetchEvent = eventId => async dispatch => {
   if (res.ok) {
     dispatch(setEvents([data]));
   }
-  return data;
 };
 
 // *(POST) Create an event
@@ -71,7 +69,6 @@ export const updateEvent = event => async dispatch => {
   if (res.ok) {
     dispatch(setEvents([data]));
   }
-  return data;
 };
 
 // *(DELETE) Delete an event
@@ -82,7 +79,7 @@ export const deleteEvent = eventId => async dispatch => {
   if (res.ok) {
     dispatch(removeEvent(eventId));
   }
-  return res;
+  // return res;
 };
 
 const eventsReducer = (state = {}, action) => {

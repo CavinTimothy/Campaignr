@@ -1,9 +1,17 @@
-const SET_REVIEWS = 'reviews/SET_REVIEWS';
+const SET_REVIEW = 'reviews/SET_REVIEW';
+const GET_REVIEWS = 'reviews/GET_REVIEWS';
 const REMOVE_REVIEW = 'reviews/REMOVE_REVIEW';
 
-export const setReviews = reviews => {
+export const setReview = review => {
   return {
-    type: SET_REVIEWS,
+    type: SET_REVIEW,
+    review
+  };
+};
+
+export const getReviews = reviews => {
+  return {
+    type: GET_REVIEWS,
     reviews
   };
 };
@@ -15,33 +23,14 @@ export const removeReview = reviewId => {
   };
 };
 
-// // GET all reviews of current user
-// export const fetchMyReviews = () => async dispatch => {
-//   const res = await fetch(`/api/me/reviews`);
-//   const reviews = await res.json();
-//   dispatch(setReviews(reviews));
-//   return res;
-// };
-
 // *(GET) Read all reviews based on a event id
 export const fetchReviews = eventId => async dispatch => {
   const res = await fetch(`/api/events/${eventId}/reviews`);
-  const data = await res.json();
   if (res.ok) {
-    dispatch(setReviews(data));
-  }
-  return res;
+    const data = await res.json();
+    dispatch(getReviews(data));
+  } else dispatch(getReviews())
 };
-
-// // GET 10 most recent reviews
-// export const fetchRecentReviews = () => async dispatch => {
-//   const res = await fetch(`/api/reviews`);
-//   const data = await res.json();
-//   if (res.ok) {
-//     dispatch(setReviews(data));
-//   }
-//   return res;
-// };
 
 // *(POST) Create a review
 export const createReview = (review, eventId) => async dispatch => {
@@ -55,9 +44,8 @@ export const createReview = (review, eventId) => async dispatch => {
 
   const data = await res.json();
   if (res.ok) {
-    dispatch(setReviews([data]));
+    dispatch(setReview(data));
   }
-  return data;
 };
 
 // *(PUT) Update a review
@@ -72,9 +60,8 @@ export const updateReview = review => async dispatch => {
 
   const data = await res.json();
   if (res.ok) {
-    dispatch(setReviews([data]));
+    dispatch(setReview(data));
   }
-  return data;
 };
 
 // *(DELETE) Delete a review
@@ -85,20 +72,22 @@ export const deleteReview = reviewId => async dispatch => {
   if (res.ok) {
     dispatch(removeReview(reviewId));
   }
-  return res;
 };
 
 const reviewsReducer = (state = {}, action) => {
-  let newState = { ...state };
   switch (action.type) {
-    case SET_REVIEWS:
-      action.reviews.forEach(review => newState[review.id] = review);
-      return newState;
+    case SET_REVIEW:
+      return { ...state, [action.review.id]: action.review };
+
+    case GET_REVIEWS:
+      const newState = {};
+      if (action.reviews) action.reviews.forEach(review => newState[review.id] = review);
+      else return newState;
+      return { ...newState };
 
     case REMOVE_REVIEW:
-      delete newState[action.reviewId];
-      return newState;
-
+      delete state[action.reviewId];
+      return state;
     default:
       return state;
   }
