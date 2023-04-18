@@ -6,11 +6,10 @@
 ![Visual of Landing Page](./LandingPage.png)
 
 ### Summary:
-This project is a React.js application I wrote to mimic the music-player website EventBrite.com. This app allows users to:
+This project is a React.js application I wrote to mimic the website EventBrite.com. This app allows users to:
 * Create secure accounts
-* Upload their own music to the site
-* Listen to other users/artists on the site
-* Interact with other users by leaving comments under songs uploaded to the site
+* Publish upcoming events
+* Interact with other users by leaving comments under event pages published to the site
 
 ### How to build/run project:
 1. Clone/download the repo/project.
