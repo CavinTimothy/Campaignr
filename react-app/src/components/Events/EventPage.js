@@ -27,26 +27,39 @@ function EventPage() {
     history.push('/');
   }
 
+  const statusColor = (status) => {
+    switch (status) {
+      case 'Upcoming':
+        return (<b style={{ color: 'green' }} >{status}</b>)
+      case 'Ongoing':
+        return (<b style={{ color: 'blue' }} >{status}</b>)
+      case 'Ended':
+        return (<b style={{ color: 'red' }} >{status}</b>)
+      default:
+        return (<b>{status}</b>)
+    }
+  }
+
   return (
     <>
       {event && (
-        <div className='container'>
-          <div className='layer'>
-            <img src={event.eventImage} alt='event Cover' id='image' />
+        <div className='event-page-container' style={{ backgroundImage: 'url(' + event.eventImage + ')' }}>
+          <div className='event-layer'>
+            <img src={event.eventImage} alt='Event Cover' id='image' />
             <div className='info'>
-              <h5>{event.status}</h5>
-              <h1 className='header'>{event.name}</h1>
-              <h2 className='header'>{`When`}</h2>
-              <p>{`${dateTimeFormat.format(new Date(event.startsAt))} - ${dateTimeFormat.format(new Date(event.endsAt))}`}</p>
-              <h2 className='header'>{`Where`}</h2>
-              <p>{`${event.address} ${event.city}, ${event.state}`}</p>
+              <h5>{statusColor(event.status)}</h5>
+              <h1 className='event-page-title'>{event.name}</h1>
+              <h3 className='event-wh'>{`When`}</h3>
+              <p className='event-info'>{`${dateTimeFormat.format(new Date(event.startsAt))} - ${dateTimeFormat.format(new Date(event.endsAt))}`}</p>
+              <h3 className='event-wh'>{`Where`}</h3>
+              <p className='event-info'>{`${event.address} ${event.city}, ${event.state}`}</p>
               <p className='desc'>{event.description}</p>
               {user && user.id === event.userId && (
                 <span className='actions'>
-                  <button>
-                    <Link to={`/events/${eventId}/edit`}>Edit</Link>
-                  </button>
-                  <button onClick={handleDelete}>Delete</button>
+                  <Link to={`/events/${eventId}/edit`}>
+                    <button id='edit-event'>Edit</button>
+                  </Link>
+                  <button onClick={handleDelete} id='delete-event'>Delete</button>
                 </span>
               )}
             </div>

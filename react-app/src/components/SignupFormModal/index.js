@@ -31,15 +31,15 @@ function SignupFormModal() {
 	};
 
 	return (
-		<>
+		<div className='signup-form'>
 			<h1>Sign Up</h1>
-			<form onSubmit={handleSubmit}>
-				<ul>
+			<form onSubmit={handleSubmit} className='auth-form'>
+				<ul className='errors'>
 					{errors.map((error, idx) => (
 						<li key={idx}>{error}</li>
 					))}
 				</ul>
-				<label>
+				<label className='form-labels'>
 					First name
 					<input
 						type="text"
@@ -48,7 +48,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className='form-labels'>
 					Last name
 					<input
 						type="text"
@@ -57,7 +57,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className='form-labels'>
 					Email
 					<input
 						type="text"
@@ -66,7 +66,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className='form-labels'>
 					Password
 					<input
 						type="password"
@@ -75,7 +75,7 @@ function SignupFormModal() {
 						required
 					/>
 				</label>
-				<label>
+				<label className='form-labels'>
 					Confirm Password
 					<input
 						type="password"
@@ -86,7 +86,7 @@ function SignupFormModal() {
 				</label>
 				<button type="submit">Sign Up</button>
 			</form>
-		</>
+		</div>
 	);
 }
 

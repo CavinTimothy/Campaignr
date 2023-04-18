@@ -46,12 +46,12 @@ function EditEventPage() {
 
   const cancelEdit = () => history.goBack();
 
-  const dateTimeFormat = new Intl.DateTimeFormat('en-US', {
-    month: 'long', day: 'numeric',
-    hour: 'numeric', minute: 'numeric', hour12: true
-  }); // "April 3 at 7:23 AM"
-  const starts = dateTimeFormat.format(new Date(startsAt));
-  const ends = dateTimeFormat.format(new Date(endsAt));
+  // const dateTimeFormat = new Intl.DateTimeFormat('en-US', {
+  //   month: 'long', day: 'numeric',
+  //   hour: 'numeric', minute: 'numeric', hour12: true
+  // }); // "April 3 at 7:23 AM"
+  // const starts = dateTimeFormat.format(new Date(startsAt));
+  // const ends = dateTimeFormat.format(new Date(endsAt));
 
   const states = [
     'Alaska	AK', 'Arizona AZ', 'Arkansas AR',
@@ -82,28 +82,30 @@ function EditEventPage() {
         ))}
       </ul>
       <form className='event-form' onSubmit={handleSubmit}>
-        <img src={eventImage} alt='event Cover' id='image' />
-        <input
-          type='text'
-          placeholder='Upload Image'
-          required
-          value={eventImage}
-          onChange={e => setEventImage(e.target.value)}
-        />
-        <div className='info'>
-          <h5>{event.status}</h5>
-          <h1 className='header'>
-            <input
-              type='text'
-              placeholder='Name'
-              required
-              value={name}
-              onChange={e => setName(e.target.value)}
-            />
-          </h1>
+        <div className='img-div'>
+          <img src={eventImage} alt='event Cover' id='image' />
+          <input
+            type='text'
+            placeholder='Upload Image'
+            required
+            value={eventImage}
+            onChange={e => setEventImage(e.target.value)}
+          />
+        </div>
+        <div className='edit-info'>
+          {/* <h5>{event.status}</h5> */}
+          {/* <h1 className='header'> */}
+          <input
+            type='text'
+            placeholder='Name'
+            required
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+          {/* </h1> */}
 
-          <h2 className='header'>{`When`}</h2>
-          <p>{`${starts} - ${ends}`}</p>
+          {/* <h2 className='header'>{`When`}</h2> */}
+          {/* <p>{`${starts} - ${ends}`}</p> */}
           <input
             id='start-time'
             type='datetime-local'
@@ -121,8 +123,8 @@ function EditEventPage() {
             // onChange={checkEndTime}
             min={startsAt}
           />
-          <h2 className='header'>{`Where`}</h2>
-          <p>{`${address} ${city}, ${state}`}</p>
+          {/* <h2 className='header'>{`Where`}</h2> */}
+          {/* <p>{`${address} ${city}, ${state}`}</p> */}
           <input
             type='text'
             placeholder='Address'
@@ -150,7 +152,7 @@ function EditEventPage() {
               )
             )}
           </select>
-          <p className='desc'>{description}</p>
+          {/* <p className='desc'>{description}</p> */}
           <textarea
             type='text'
             placeholder='Description'
@@ -158,9 +160,9 @@ function EditEventPage() {
             value={description}
             onChange={e => setDescription(e.target.value)}
           />
-          <button type='submit'>Save</button>
-          <button type='button' onClick={cancelEdit}>Cancel</button>
         </div>
+        <button type='submit' id='edit-event'>Save</button>
+        <button type='button' onClick={cancelEdit} id='delete-event'>Cancel</button>
       </form>
     </div>
   );

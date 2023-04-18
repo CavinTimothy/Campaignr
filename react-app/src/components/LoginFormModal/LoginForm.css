@@ -1,0 +1,17 @@
+.login-form {
+  padding: 20px;
+  width: 200px;
+  background-image: linear-gradient(-225deg, #f5f1e5 50%, #e81547 50%);
+}
+
+.auth-form {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-lables {
+  display: flex;
+  justify-content: space-between;
+}

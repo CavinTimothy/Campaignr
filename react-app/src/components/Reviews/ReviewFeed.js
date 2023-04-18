@@ -5,6 +5,7 @@ import { fetchReviews, deleteReview } from '../../store/reviews';
 import CreateReview from './CreateReview';
 import EditReview from './EditReview';
 import OpenModalButton from '../OpenModalButton';
+import './Reviews.css'
 
 function ReviewFeed() {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ function ReviewFeed() {
             {eventReviews.map(({ id, subject, body, user }, idx) => (
               <li key={idx} className='reviewItem'>
                 <h5>{`${user.firstName} ${user.lastName[0]}.`}</h5>
-                <h6>{subject}</h6>
+                <p className='review-sub'>{subject}</p>
                 <p id='review'>{body}</p>
                 {sessionUser && sessionUser.id === user.id && (
                   <>
@@ -44,7 +45,7 @@ function ReviewFeed() {
                       buttonText="Edit"
                       modalComponent={<EditReview review={eventReviews[idx]} />}
                     />
-                    <button onClick={(e) => handleDelete(e, id)}>Delete</button>
+                    <button onClick={(e) => handleDelete(e, id)} id='delete-review'>Delete</button>
                   </>
                 )}
               </li>

@@ -24,7 +24,7 @@ function CreateReview() {
 
   return (
     <>
-      <form id='input' onSubmit={handleSubmit}>
+      <form id='review-form' onSubmit={handleSubmit}>
         <input
           type='text'
           value={subject}
@@ -39,7 +39,7 @@ function CreateReview() {
           onChange={(e) => setBody(e.target.value)}
           required
         />
-        <button type='submit'>Submit</button>
+        <button type='submit' id='save-edit'>Submit</button>
       </form>
     </>
   )

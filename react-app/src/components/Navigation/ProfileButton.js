@@ -48,21 +48,20 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu}>
+      <button className='profile-button' onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{`${user.firstName} ${user.lastName}`}</li>
-            <li>{user.email}</li>
+            <li className='profile-name'>{`${user.firstName} ${user.lastName}`}</li>
             <li>
               <NavLink to='/events/new'>
-                <button>Publish Event</button>
+                <button className='nav-button publish'>Publish Event</button>
               </NavLink>
             </li>
             <li>
-              <button onClick={handleLogout}>Log Out</button>
+              <button onClick={handleLogout} className='nav-button logout'>Log Out</button>
             </li>
           </>
         ) : (
@@ -81,8 +80,8 @@ function ProfileButton({ user }) {
                 modalComponent={<SignupFormModal />}
               />
             </li>
-            <li>
-              <button className='demo-button' onClick={demoLogin}>
+            <li >
+              <button className='nav-button publish' onClick={demoLogin}>
                 Demo
               </button>
             </li>

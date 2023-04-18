@@ -1,0 +1,73 @@
+.parent {
+  display: block;
+  width: 1250px;
+  margin: auto;
+}
+
+.reviewUl {
+  list-style-type: none;
+  max-width: 1240px;
+  padding: 0px 50px;
+  margin: 5px auto;
+}
+
+.reviewItem {
+  border-bottom: groove;
+  padding: 1%;
+  background-color: #e4dfd0;
+}
+
+#delete-review {
+  color: #e81547;
+  background-color: #023563;
+  border: solid 2px #e81547;
+}
+
+#delete-review:hover {
+  color: #023563;
+  background-color: #e81547;
+  border: solid 2px #023563;
+}
+
+#review {
+  color: #023663b1;
+  font-size: small;
+}
+
+#save-edit {
+  color: #589595;
+  background-color: #023563;
+  border: solid 2px #589595;
+}
+
+#save-edit:hover {
+  color: #023563;
+  background-color: #5895959f;
+  border: solid 2px #023563;
+
+}
+
+.reviewItem h5 {
+  color: #589595;
+  margin: 0px;
+}
+
+.review-sub {
+  color: #023563;
+  margin-bottom: 5px;
+}
+
+#edit-review {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+}
+
+#review-form {
+  margin-top: 20px;
+  display: flex;
+  gap: 5px;
+}

@@ -69,79 +69,92 @@ function CreateEventPage() {
   ]
 
   return (
-    <div>
-      <div>
-      </div>
+    <div className='event-form-container'>
+      <h1>Publish a <b style={{ color: '#589595' }}>New</b> <b style={{ color: '#e81547' }}>Event</b></h1>
       <form className='event-form' onSubmit={handleSubmit}>
-        <ul>
+        <ul className='errors'>
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <input
-          type='text'
-          placeholder='Name'
-          required
-          value={name}
-          onChange={e => setName(e.target.value)}
-        />
-        <label>Start Date and Time</label>
-        <input
-          id='start-time'
-          type='datetime-local'
-          required
-          value={startsAt}
-          onChange={e => setStartsAt(e.target.value)}
-          // onChange={checkStartTime}
-          min={new Date().toJSON().slice(0, -8)}
-        />
-        <label>End Date and Time</label>
-        <input
-          id='end-time'
-          type='datetime-local'
-          required
-          value={endsAt}
-          onChange={e => setEndsAt(e.target.value)}
-          // onChange={checkEndTime}
-          min={startsAt}
-        />
-        <input
-          type='text'
-          placeholder='Address'
-          required
-          value={address}
-          onChange={e => setAddress(e.target.value)}
-        />
-        <input
-          type='text'
-          placeholder='City'
-          required
-          value={city}
-          onChange={e => setCity(e.target.value)}
-        />
-        <select onChange={e => setState(e.target.value)} required>
-          <option value={''}>Select State</option>
-          {states.map((state, idx) =>
-            <option key={idx} value={state.slice(-2)}>
-              {state.slice(0, -3)}
-            </option>
-          )}
-        </select>
-        <textarea
-          type='text'
-          placeholder='Write about the event here...'
-          required
-          value={description}
-          onChange={e => setDescription(e.target.value)}
-        />
-        <input
-          type='text'
-          placeholder='Upload Image'
-          required
-          value={eventImage}
-          onChange={e => setEventImage(e.target.value)}
-        />
-        <button type='submit'>Publish</button>
+        <label>Event Name
+          <input
+            type='text'
+            placeholder='Name'
+            required
+            value={name}
+            onChange={e => setName(e.target.value)}
+          />
+        </label>
+        <label>Start Date and Time
+          <input
+            id='start-time'
+            type='datetime-local'
+            required
+            value={startsAt}
+            onChange={e => setStartsAt(e.target.value)}
+            // onChange={checkStartTime}
+            min={new Date().toJSON().slice(0, -8)}
+          />
+        </label>
+        <label>End Date and Time
+          <input
+            id='end-time'
+            type='datetime-local'
+            required
+            value={endsAt}
+            onChange={e => setEndsAt(e.target.value)}
+            // onChange={checkEndTime}
+            min={startsAt}
+          />
+        </label>
+        <label>Address
+          <input
+            type='text'
+            placeholder='Address'
+            required
+            value={address}
+            onChange={e => setAddress(e.target.value)}
+          />
+        </label>
+        <label>City
+          <input
+            type='text'
+            placeholder='City'
+            required
+            value={city}
+            onChange={e => setCity(e.target.value)}
+          />
+        </label>
+        <label>State
+          <select onChange={e => setState(e.target.value)} required>
+            <option value={''}>Select State</option>
+            {states.map((state, idx) =>
+              <option key={idx} value={state.slice(-2)}>
+                {state.slice(0, -3)}
+              </option>
+            )}
+          </select>
+        </label>
+        <label>Description
+          <textarea
+            type='text'
+            placeholder='Write about the event here...'
+            required
+            value={description}
+            onChange={e => setDescription(e.target.value)}
+          />
+        </label>
+        <label>Upload Image
+          <input
+            type='text'
+            placeholder='Upload Image'
+            required
+            value={eventImage}
+            onChange={e => setEventImage(e.target.value)}
+          />
+        </label>
+        <button type='submit' id='event-submit'>Publish</button>
       </form>
     </div>
   );

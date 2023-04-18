@@ -7,15 +7,14 @@ import './Home.css';
 function Home() {
   return (
     <div className='full-screen home'>
+      <div className='home-header' />
       <div className='container'>
         <div className='home-text'>
-          <h2 className='home-welcome'>Welcome to the </h2>
-          <h1 className='home-title'>Campaignr</h1>
-          <div className='home-description'>
-            Events from your favorite organization!
-          </div>
+          <h1 className='home-title'>Campaignr Community</h1>
+          <h2 className='home-description'>An <b>organization</b> for the like minded</h2>
+          <h3 className='home-welcome'>Join our next <b>event!</b></h3>
         </div>
-        <EventList />
+        <EventList home={true} />
       </div>
     </div>
   );
