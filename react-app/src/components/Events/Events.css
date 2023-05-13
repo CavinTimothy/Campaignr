@@ -1,5 +1,9 @@
 /* EventList */
 
+#eventList {
+  padding-bottom: 10px;
+}
+
 .event-link,
 .event-link:visited {
   text-decoration: none;
@@ -133,7 +137,7 @@
 }
 
 .event-layer {
-  background: rgba(124, 124, 124, 0.6);
+  background: rgba(80, 80, 80, 0.8);
   backdrop-filter: blur(10px);
   display: flex;
   justify-content: space-around;

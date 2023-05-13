@@ -40,10 +40,10 @@ function App() {
           </Route>
         </Switch>
       )}
-      <div className='footer'>
-        <a href='https://www.linkedin.com/in/cavin-timothy//'>Linkedin</a>
+      <div id='footer'>
+        <a href='https://www.linkedin.com/in/cavin-timothy//'><i className="fa-brands fa-linkedin"></i></a>
         &nbsp;|&nbsp;
-        <a href='https://github.com/CavinTimothy'>Github</a>
+        <a href='https://github.com/CavinTimothy'><i className="fa-brands fa-github"></i></a>
       </div>
 
     </>

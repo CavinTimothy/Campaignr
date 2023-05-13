@@ -11,14 +11,14 @@ function CreateEventPage() {
   if (!user) history.push('/');
 
   const demoUser = user.id === 1 ? true : false;
-  const [name, setName] = useState(demoUser ? 'High 5 day!' : '');
-  const [address, setAddress] = useState(demoUser ? '123 up-high St' : '');
-  const [city, setCity] = useState(demoUser ? 'San Diego' : '');
+  const [name, setName] = useState(demoUser ? 'Graduation Day!' : '');
+  const [address, setAddress] = useState(demoUser ? '123 Congrats Ave.' : '');
+  const [city, setCity] = useState(demoUser ? 'San Francisco' : '');
   const [state, setState] = useState(demoUser ? 'CA' : '');
-  const [description, setDescription] = useState(demoUser ? 'Join us in San Diego to set the world record for the largest group high 5!' : '');
-  const [eventImage, setEventImage] = useState(demoUser ? 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-demo1.jpeg' : '');
-  const [startsAt, setStartsAt] = useState(demoUser ? '2023-05-22T13:00' : '');
-  const [endsAt, setEndsAt] = useState(demoUser ? '2023-05-22T18:00' : '');
+  const [description, setDescription] = useState(demoUser ? 'Join us in San Francisco to celebrate the hard-working graduates of 2023!' : '');
+  const [eventImage, setEventImage] = useState(demoUser ? 'https://soundcloneupload.s3.us-west-2.amazonaws.com/grad.jpg' : '');
+  const [startsAt, setStartsAt] = useState(demoUser ? '2023-05-13T09:00' : '');
+  const [endsAt, setEndsAt] = useState(demoUser ? '2023-05-13T15:30' : '');
   // date = new Date() -> Wed Apr 12 2023 21:39:08 GMT-0700 (Pacific Daylight Time)
   //  date = Date() -> "Wed Apr 12 2023 21:39:08 GMT-0700 (Pacific Daylight Time)"
   // date1 = date.toJSON() -> "2023-04-13T04:39:08.043Z"
@@ -93,8 +93,8 @@ function CreateEventPage() {
             required
             value={startsAt}
             onChange={e => setStartsAt(e.target.value)}
-            // onChange={checkStartTime}
-            min={new Date().toJSON().slice(0, -8)}
+          // onChange={checkStartTime}
+          // min={new Date().toJSON().slice(0, -8)}
           />
         </label>
         <label>End Date and Time

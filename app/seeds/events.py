@@ -22,24 +22,36 @@ def seed_events():
         description = 'Come to Seattle for our first fundraiser!',
         user_id = 2,
         event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-seed2.jpg',
-        starts_at = datetime.strptime('2023-04-03 09:00', '%Y-%m-%d %H:%M'),
-        ends_at = datetime.strptime('2023-04-03 20:00', '%Y-%m-%d %H:%M')
+        starts_at = datetime.strptime('2023-05-18 09:00', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-05-18 20:00', '%Y-%m-%d %H:%M')
     )
     event3 = Event(
-        name = 'Spring 2023 Concert',
+        name = 'Summer 2023 Concert',
         address = '223 Green Ave.',
         city = 'Boise',
         state = 'ID',
         description = 'Show support to our local performers in Boise!',
         user_id = 3,
         event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-seed3.jpg',
-        starts_at = datetime.strptime('2023-05-18 21:00', '%Y-%m-%d %H:%M'),
-        ends_at = datetime.strptime('2023-05-18 23:30', '%Y-%m-%d %H:%M')
+        starts_at = datetime.strptime('2023-06-28 21:00', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-06-28 23:30', '%Y-%m-%d %H:%M')
+    )
+    event4 = Event(
+        name = 'Philly Fun Run',
+        address = '777 Champions Rd.',
+        city = 'Philadelphia',
+        state = 'PA',
+        description = 'Join us for our first annual marathon fundraiser!',
+        user_id = 1,
+        event_image = 'https://soundcloneupload.s3.us-west-2.amazonaws.com/event-rocky.jpeg',
+        starts_at = datetime.strptime('2023-07-10 13:00', '%Y-%m-%d %H:%M'),
+        ends_at = datetime.strptime('2023-07-10 15:30', '%Y-%m-%d %H:%M')
     )
 
     db.session.add(event1)
     db.session.add(event2)
     db.session.add(event3)
+    db.session.add(event4)
     db.session.commit()
 
 def undo_events():

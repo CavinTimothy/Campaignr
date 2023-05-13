@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchEvents } from '../../store/events';
-import './Events.css'
+import './Events.css';
 
 function EventList({ home }) {
   const dispatch = useDispatch();
@@ -33,7 +33,7 @@ function EventList({ home }) {
   }); // "Mon, Apr 03, 7:23 AM"
 
   return (
-    <div>
+    <div id='eventList'>
       {!home && (
         <div className='all-events'>
           <h1>All our Events</h1>
@@ -50,7 +50,7 @@ function EventList({ home }) {
                 <h3 className='event-title'>{name}</h3>
                 <h5 className='eventTime'>{`${dateTimeFormat.format(new Date(startsAt))} - `}{statusColor(status)}</h5>
                 <h5>{`${city}, ${state}`}</h5>
-                <img src={eventImage} alt='Event thumbnail' className='img' style={{ width: '200px' }} />
+                <img src={eventImage} alt='Event thumbnail' className='img' style={{ width: '200px', 'max-height': '100px' }} />
                 <p className='eventP'>{`${description.slice(0, 30)}...`}</p>
               </div>
             </Link>

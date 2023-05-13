@@ -10,19 +10,13 @@ body {
   padding: 0px;
 }
 
-.footer {
-  height: 50px;
-  width: 1000px;
-  position: fixed;
-  left: 400px;
-  bottom: 0px;
-  height: 30px;
-  width: 100%;
-  background-color: #f5f1e5;
+#footer {
+  margin: auto;
+  max-width: 1250px;
 }
 
-.footer a,
-.footer a:visited {
+#footer a,
+#footer a:visited {
   text-decoration: none;
-  color: black;
+  color: #023563;
 }
